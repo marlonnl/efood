@@ -8,4 +8,10 @@ export const GlobalStyle = createGlobalStyle`
       font-family: Roboto, sans-serif;
       list-style-type: none;
   }
+
+  .container {
+    max-width: 1024px;
+    width: 100%;
+    margin: 0 auto;
+  }
 `

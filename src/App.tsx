@@ -1,8 +1,13 @@
-import logo from './logo.svg'
-import './App.css'
+import { GlobalStyle } from './styles'
+import Hero from './components/Hero'
 
 function App() {
-  return <div className="App">ola</div>
+  return (
+    <>
+      <GlobalStyle />
+      <Hero />
+    </>
+  )
 }
 
 export default App

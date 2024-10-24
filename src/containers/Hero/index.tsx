@@ -1,13 +1,13 @@
-import imageLogo from '../../assets/images/logo.png'
-import { Description, HeroContainer, HeroStyle, Logo } from './styles'
+import Logo from '../../components/Logo'
+import { Description, HeroContainer, HeroStyle, LogoStyle } from './styles'
 
 const Hero = () => (
   <HeroStyle>
     <div className="container">
       <HeroContainer>
-        <Logo>
-          <img src={imageLogo} alt="EFood" />
-        </Logo>
+        <LogoStyle>
+          <Logo />
+        </LogoStyle>
 
         <Description>
           Viva experiências gastronômicas

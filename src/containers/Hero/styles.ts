@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 import bgImg from '../../assets/images/vector.png'
 import { colors } from '../../styles/colors'
+import Logo from '../../components/Logo'
 
 export const HeroStyle = styled.div`
   background-image: url(${bgImg});
@@ -15,7 +16,7 @@ export const HeroContainer = styled.div`
   justify-content: space-between;
 `
 
-export const Logo = styled.div`
+export const LogoStyle = styled.div`
   text-align: center;
   margin-top: 64px;
 `

@@ -1,5 +1,5 @@
 import { GlobalStyle } from './styles'
-import Hero from './components/Hero'
+import Hero from './containers/Hero'
 
 function App() {
   return (

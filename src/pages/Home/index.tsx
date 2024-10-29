@@ -4,7 +4,9 @@ import RestaurantList from '../../containers/RestaurantList'
 const Home = () => (
   <>
     <Hero />
-    <RestaurantList />
+    <div className="container">
+      <RestaurantList />
+    </div>
   </>
 )
 

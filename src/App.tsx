@@ -1,16 +1,29 @@
+import { createBrowserRouter, Route, RouterProvider } from 'react-router-dom'
+
 import { GlobalStyle } from './styles'
+
 import Hero from './containers/Hero'
 import RestaurantList from './containers/RestaurantList'
 import Footer from './components/Footer'
+import Home from './pages/Home'
+import Perfil from './pages/Perfil'
+
+const routes = createBrowserRouter([
+  {
+    path: '/',
+    element: <Home />
+  },
+  {
+    path: '/perfil',
+    element: <Perfil />
+  }
+])
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <Hero />
-      <div className="container">
-        <RestaurantList />
-      </div>
+      <RouterProvider router={routes} />
       <Footer />
     </>
   )

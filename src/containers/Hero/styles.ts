@@ -1,13 +1,6 @@
 import styled from 'styled-components'
 
-import bgImg from '../../assets/images/vector.png'
 import { colors } from '../../styles/colors'
-import Logo from '../../components/Logo'
-
-export const HeroStyle = styled.div`
-  background-image: url(${bgImg});
-  background-size: cover;
-`
 
 export const HeroContainer = styled.div`
   height: 384px;

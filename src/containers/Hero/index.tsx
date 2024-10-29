@@ -1,8 +1,8 @@
 import Logo from '../../components/Logo'
-import { Description, HeroContainer, HeroStyle, LogoStyle } from './styles'
+import { Description, HeroContainer, LogoStyle } from './styles'
 
 const Hero = () => (
-  <HeroStyle>
+  <div className="vectorBg">
     <div className="container">
       <HeroContainer>
         <LogoStyle>
@@ -16,7 +16,7 @@ const Hero = () => (
         </Description>
       </HeroContainer>
     </div>
-  </HeroStyle>
+  </div>
 )
 
 export default Hero

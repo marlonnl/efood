@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 
+import bgImg from '../assets/images/vector.png'
+
 export const GlobalStyle = createGlobalStyle`
   * {
       margin: 0;
@@ -13,5 +15,10 @@ export const GlobalStyle = createGlobalStyle`
     max-width: 1024px;
     width: 100%;
     margin: 0 auto;
+  }
+
+  .vectorBg {
+    background-image: url(${bgImg});
+    background-size: cover;
   }
 `

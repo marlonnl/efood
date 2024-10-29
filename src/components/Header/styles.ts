@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { colors } from '../../styles/colors'
-import { LogoStyle } from '../../containers/Hero/styles'
 
 export const HeaderStyle = styled.header`
   .vectorBg {

@@ -1,8 +1,8 @@
-import Hero from '../../containers/Hero'
+import Header from '../../components/Header'
 
 const Perfil = () => (
   <>
-    <Hero />
+    <Header />
   </>
 )
 

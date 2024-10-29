@@ -30,7 +30,7 @@ const RestaurantCard = ({
   description
 }: Props) => (
   <Card>
-    <img src={image} alt="nome do restaurante" />
+    <img src={image} alt={name} />
     <Tags>
       {destaque && <Tag>Destaque da semana</Tag>}
       <Tag>{style}</Tag>

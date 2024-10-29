@@ -45,7 +45,7 @@ const RestaurantCard = ({
         </Nota>
       </CardHeader>
       <Description>{description}</Description>
-      <SaibaMais>Saiba mais</SaibaMais>
+      <SaibaMais to="/perfil">Saiba mais</SaibaMais>
     </CardContainer>
   </Card>
 )

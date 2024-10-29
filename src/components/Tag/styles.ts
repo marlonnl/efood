@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { colors } from '../../styles/colors'
+import { Link } from 'react-router-dom'
 
 export const TagContainer = styled.div`
   background-color: ${colors.coral};
@@ -9,7 +10,7 @@ export const TagContainer = styled.div`
   padding: 6px 12px;
 `
 
-export const SaibaMais = styled.button`
+export const SaibaMais = styled(Link)`
   background-color: ${colors.coral};
   color: ${colors.footerBg};
   font-size: 14px;
@@ -17,5 +18,6 @@ export const SaibaMais = styled.button`
   outline: none;
   border: none;
   padding: 4px 6px;
+  text-decoration: none;
   cursor: pointer;
 `

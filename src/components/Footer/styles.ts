@@ -4,7 +4,12 @@ import { colors } from '../../styles/colors'
 export const FooterContainer = styled.footer`
   background-color: ${colors.footerBg};
   padding: 40px 0;
-  text-align: center;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `
 
 export const SocialList = styled.ul`
@@ -19,4 +24,5 @@ export const Disclaimer = styled.p`
   color: ${colors.coral};
   width: 480px;
   margin: 0 auto;
+  text-align: center;
 `

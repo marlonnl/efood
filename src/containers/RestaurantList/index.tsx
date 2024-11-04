@@ -3,6 +3,8 @@ import { CardList } from './styles'
 
 import japonesaImg from '../../assets/images/japonesa.png'
 import italianaImg from '../../assets/images/italiana.png'
+import { useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 
 const RestaurantsArray = [
   {
@@ -25,22 +27,46 @@ const RestaurantsArray = [
   }
 ]
 
-const RestaurantList = () => (
-  <>
-    <CardList>
-      {RestaurantsArray.map((r) => (
-        <RestaurantCard
-          key={r.name}
-          name={r.name}
-          style={r.style}
-          rating={r.rating}
-          destaque={r.destaque}
-          description={r.description}
-          image={r.image}
-        />
-      ))}
-    </CardList>
-  </>
-)
+export type Restaurant = {
+  id: number
+  titulo: string
+  destacado: boolean
+  tipo: string
+  avaliacao: number
+  descricao: string
+  capa: string
+}
+
+const RestaurantList = () => {
+  const [restaurants, setRestaurants] = useState<Restaurant[]>([])
+
+  useEffect(() => {
+    fetch('https://fake-api-tau.vercel.app/api/efood/restaurantes')
+      .then((r) => r.json())
+      .then((r) => setRestaurants(r))
+  }, [])
+
+  if (!restaurants) {
+    return <h3>Carregando...</h3>
+  }
+
+  return (
+    <>
+      <CardList>
+        {restaurants.map((r) => (
+          <RestaurantCard
+            key={r.id}
+            name={r.titulo}
+            style={r.tipo}
+            rating={r.avaliacao}
+            destaque={r.destacado}
+            description={r.descricao}
+            image={r.capa}
+          />
+        ))}
+      </CardList>
+    </>
+  )
+}
 
 export default RestaurantList

@@ -4,6 +4,12 @@ import { colors } from '../../styles/colors'
 export const Card = styled.div`
   color: ${colors.coral};
   position: relative;
+
+  > img {
+    width: 100%;
+    max-height: 315px;
+    height: 100%;
+  }
 `
 
 export const CardContainer = styled.div`

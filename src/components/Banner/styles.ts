@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { colors } from '../../styles/colors'
-import bannerImg from '../../assets/images/banner.png'
 
 export const BannerStyle = styled.div`
   background-size: cover;

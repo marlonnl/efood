@@ -24,7 +24,11 @@ const Perfil = () => {
   return (
     <>
       <Header />
-      <Banner cozinha={restaurante.tipo} nome={restaurante.titulo} />
+      <Banner
+        cozinha={restaurante.tipo}
+        nome={restaurante.titulo}
+        capa={restaurante.capa}
+      />
       <MenuStyle>
         <div className="container">
           <Grid>

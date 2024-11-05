@@ -3,10 +3,11 @@ import { BannerStyle, Cozinha, Nome, RestaurantInfo } from './styles'
 type Props = {
   cozinha: string
   nome: string
+  capa: string
 }
 
-const Banner = ({ cozinha, nome }: Props) => (
-  <BannerStyle>
+const Banner = ({ cozinha, nome, capa }: Props) => (
+  <BannerStyle style={{ backgroundImage: `url(${capa})` }}>
     <div className="container">
       <RestaurantInfo>
         <Cozinha>{cozinha}</Cozinha>

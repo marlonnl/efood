@@ -3,8 +3,24 @@ import { colors } from '../../styles/colors'
 import bannerImg from '../../assets/images/banner.png'
 
 export const BannerStyle = styled.div`
-  background-image: url(${bannerImg});
   background-size: cover;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    background-color: #000;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.56;
+  }
+
+  .container {
+    z-index: 1;
+    position: relative;
+  }
 `
 
 export const RestaurantInfo = styled.div`

@@ -19,6 +19,7 @@ type Props = {
   image: string
   rating: number
   destaque: boolean
+  id: number
 }
 
 const RestaurantCard = ({
@@ -27,7 +28,8 @@ const RestaurantCard = ({
   rating,
   destaque,
   image,
-  description
+  description,
+  id
 }: Props) => (
   <Card>
     <img src={image} alt={name} />
@@ -45,7 +47,7 @@ const RestaurantCard = ({
         </Nota>
       </CardHeader>
       <Description>{description}</Description>
-      <SaibaMais to="/perfil">Saiba mais</SaibaMais>
+      <SaibaMais to={`/perfil/${id}`}>Saiba mais</SaibaMais>
     </CardContainer>
   </Card>
 )

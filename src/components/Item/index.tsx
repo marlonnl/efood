@@ -1,16 +1,21 @@
 import { Card, ItemDescription, ItemName } from './styles'
 
-import itemImg from '../../assets/images/item.png'
 import AddToCart from '../AddToCart'
 
-const Item = () => (
+type Props = {
+  nome: string
+  descricao: string
+  foto: string
+  id: number
+  preco: number
+  porcao: string
+}
+
+const Item = ({ nome, descricao, foto, id, preco, porcao }: Props) => (
   <Card>
-    <img src={itemImg} alt="Pizza" />
-    <ItemName>Pizza Marguerita</ItemName>
-    <ItemDescription>
-      A clássica marguerita: molho de tomate suculento, mussarela derretida,
-      manjericão fresco e um toque de azeite. Sabor e simplicidade!
-    </ItemDescription>
+    <img src={foto} alt="Pizza" />
+    <ItemName>{nome}</ItemName>
+    <ItemDescription>{descricao}</ItemDescription>
     <AddToCart />
   </Card>
 )

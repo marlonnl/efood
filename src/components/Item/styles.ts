@@ -5,6 +5,11 @@ export const Card = styled.div`
   background-color: ${colors.coral};
   padding: 8px;
   color: ${colors.footerBg};
+
+  > img {
+    width: 304px;
+    height: 167px;
+  }
 `
 
 export const ItemName = styled.h3`

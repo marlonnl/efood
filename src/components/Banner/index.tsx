@@ -1,11 +1,16 @@
 import { BannerStyle, Cozinha, Nome, RestaurantInfo } from './styles'
 
-const Banner = () => (
+type Props = {
+  cozinha: string
+  nome: string
+}
+
+const Banner = ({ cozinha, nome }: Props) => (
   <BannerStyle>
     <div className="container">
       <RestaurantInfo>
-        <Cozinha>Italiana</Cozinha>
-        <Nome>La Dolce Vita Trattoria</Nome>
+        <Cozinha>{cozinha}</Cozinha>
+        <Nome>{nome}</Nome>
       </RestaurantInfo>
     </div>
   </BannerStyle>

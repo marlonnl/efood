@@ -1,13 +1,49 @@
+import { useEffect, useState } from 'react'
 import Banner from '../../components/Banner'
 import Header from '../../components/Header'
-import Menu from '../../containers/Menu'
+import { Restaurant } from '../../containers/RestaurantList'
+import { useParams } from 'react-router-dom'
+import { Grid, MenuStyle } from './styles'
+import Item from '../../components/Item'
 
-const Perfil = () => (
-  <>
-    <Header />
-    <Banner />
-    <Menu />
-  </>
-)
+const Perfil = () => {
+  const { id } = useParams()
+
+  const [restaurante, setRestaurante] = useState<Restaurant>()
+
+  useEffect(() => {
+    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
+      .then((r) => r.json())
+      .then((r) => setRestaurante(r))
+  }, [id])
+
+  if (!restaurante) {
+    return <h3>Carregando...</h3>
+  }
+
+  return (
+    <>
+      <Header />
+      <Banner cozinha={restaurante.tipo} nome={restaurante.titulo} />
+      <MenuStyle>
+        <div className="container">
+          <Grid>
+            {restaurante.cardapio.map((menu) => (
+              <Item
+                key={menu.id}
+                nome={menu.nome}
+                descricao={menu.descricao}
+                foto={menu.foto}
+                preco={menu.preco}
+                id={menu.id}
+                porcao={menu.porcao}
+              />
+            ))}
+          </Grid>
+        </div>
+      </MenuStyle>
+    </>
+  )
+}
 
 export default Perfil

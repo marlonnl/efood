@@ -35,6 +35,16 @@ export type Restaurant = {
   avaliacao: number
   descricao: string
   capa: string
+  cardapio: Cardapio[]
+}
+
+export type Cardapio = {
+  foto: string
+  preco: number
+  id: number
+  nome: string
+  descricao: string
+  porcao: string
 }
 
 const RestaurantList = () => {
@@ -62,6 +72,7 @@ const RestaurantList = () => {
             destaque={r.destacado}
             description={r.descricao}
             image={r.capa}
+            id={r.id}
           />
         ))}
       </CardList>

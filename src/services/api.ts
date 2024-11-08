@@ -8,9 +8,12 @@ const api = createApi({
   endpoints: (builder) => ({
     getRestaurants: builder.query<Restaurant[], void>({
       query: () => 'restaurantes'
+    }),
+    getRestaurant: builder.query<Restaurant, string>({
+      query: (id) => `restaurantes/${id}`
     })
   })
 })
 
-export const { useGetRestaurantsQuery } = api
+export const { useGetRestaurantsQuery, useGetRestaurantQuery } = api
 export default api

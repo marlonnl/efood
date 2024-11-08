@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { Grid, MenuStyle } from './styles'
@@ -6,18 +5,11 @@ import { Grid, MenuStyle } from './styles'
 import Banner from '../../components/Banner'
 import Header from '../../components/Header'
 import Item from '../../components/Item'
-import { Restaurant } from '../Home'
+import { useGetRestaurantQuery } from '../../services/api'
 
 const Perfil = () => {
   const { id } = useParams()
-
-  const [restaurante, setRestaurante] = useState<Restaurant>()
-
-  useEffect(() => {
-    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
-      .then((r) => r.json())
-      .then((r) => setRestaurante(r))
-  }, [id])
+  const { data: restaurante } = useGetRestaurantQuery(id!)
 
   if (!restaurante) {
     return <h3>Carregando...</h3>

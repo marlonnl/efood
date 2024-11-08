@@ -3,12 +3,14 @@ import { colors } from '../../styles/colors'
 
 export const Card = styled.div`
   background-color: ${colors.coral};
-  padding: 8px;
   color: ${colors.footerBg};
+  padding: 8px;
 
   > img {
-    width: 304px;
+    display: block;
+    width: 100%;
     height: 167px;
+    object-fit: cover;
   }
 `
 

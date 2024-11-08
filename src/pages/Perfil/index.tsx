@@ -5,8 +5,8 @@ import { Grid, MenuStyle } from './styles'
 
 import Banner from '../../components/Banner'
 import Header from '../../components/Header'
-import { Restaurant } from '../../containers/RestaurantList'
 import Item from '../../components/Item'
+import { Restaurant } from '../Home'
 
 const Perfil = () => {
   const { id } = useParams()

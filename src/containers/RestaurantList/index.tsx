@@ -1,41 +1,12 @@
 import RestaurantCard from '../../components/RestaurantCard'
+import { Restaurant } from '../../pages/Home'
 import { CardList } from './styles'
 
-import { useEffect, useState } from 'react'
-
-export type Restaurant = {
-  id: number
-  titulo: string
-  destacado: boolean
-  tipo: string
-  avaliacao: number
-  descricao: string
-  capa: string
-  cardapio: Cardapio[]
+type Props = {
+  restaurants: Restaurant[]
 }
 
-export type Cardapio = {
-  foto: string
-  preco: number
-  id: number
-  nome: string
-  descricao: string
-  porcao: string
-}
-
-const RestaurantList = () => {
-  const [restaurants, setRestaurants] = useState<Restaurant[]>([])
-
-  useEffect(() => {
-    fetch('https://fake-api-tau.vercel.app/api/efood/restaurantes')
-      .then((r) => r.json())
-      .then((r) => setRestaurants(r))
-  }, [])
-
-  if (!restaurants) {
-    return <h3>Carregando...</h3>
-  }
-
+const RestaurantList = ({ restaurants }: Props) => {
   return (
     <>
       <CardList>

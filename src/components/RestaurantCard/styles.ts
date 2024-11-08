@@ -9,6 +9,7 @@ export const Card = styled.div`
     width: 100%;
     max-height: 315px;
     height: 100%;
+    object-fit: cover;
   }
 `
 

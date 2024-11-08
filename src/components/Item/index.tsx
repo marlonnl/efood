@@ -48,7 +48,7 @@ const Item = ({ nome, descricao, foto, id, preco, porcao }: Props) => {
       <Card>
         <img src={foto} alt={nome} />
         <ItemName>{nome}</ItemName>
-        <ItemDescription>{descricao}</ItemDescription>
+        <ItemDescription>{descricao.slice(0, 180)}...</ItemDescription>
         <AddToCartBtn onClick={() => setModal({ visible: true })}>
           Adicionar ao carrinho
         </AddToCartBtn>

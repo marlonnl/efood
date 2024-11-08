@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+
+import { Grid, MenuStyle } from './styles'
+
 import Banner from '../../components/Banner'
 import Header from '../../components/Header'
 import { Restaurant } from '../../containers/RestaurantList'
-import { useParams } from 'react-router-dom'
-import { Grid, MenuStyle } from './styles'
 import Item from '../../components/Item'
 
 const Perfil = () => {

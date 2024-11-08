@@ -104,6 +104,7 @@ export const ModalInfo = styled.div`
     height: 100%;
     max-width: 280px;
     max-height: 280px;
+    object-fit: cover;
   }
 `
 

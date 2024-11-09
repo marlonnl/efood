@@ -1,4 +1,8 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+
+import { open, add } from '../../store/reducers/cart'
+
 import {
   Card,
   ItemDescription,
@@ -11,14 +15,19 @@ import {
 } from './styles'
 
 import closeImg from '../../assets/images/close.png'
+import { Cardapio } from '../../pages/Home'
+
+// type Props = {
+//   nome: string
+//   descricao: string
+//   foto: string
+//   id: number
+//   preco: number
+//   porcao: string
+// }
 
 type Props = {
-  nome: string
-  descricao: string
-  foto: string
-  id: number
-  preco: number
-  porcao: string
+  item: Cardapio
 }
 
 type ModalState = {
@@ -32,7 +41,9 @@ export const priceFormat = (price = 0) => {
   }).format(price)
 }
 
-const Item = ({ nome, descricao, foto, id, preco, porcao }: Props) => {
+const Item = ({ item }: Props) => {
+  const dispatch = useDispatch()
+
   const [modal, setModal] = useState<ModalState>({
     visible: false
   })
@@ -43,12 +54,18 @@ const Item = ({ nome, descricao, foto, id, preco, porcao }: Props) => {
     })
   }
 
+  const addToCart = () => {
+    // closeModal()
+    dispatch(add(item))
+    dispatch(open())
+  }
+
   return (
     <>
       <Card>
-        <img src={foto} alt={nome} />
-        <ItemName>{nome}</ItemName>
-        <ItemDescription>{descricao.slice(0, 180)}...</ItemDescription>
+        <img src={item.foto} alt={item.nome} />
+        <ItemName>{item.nome}</ItemName>
+        <ItemDescription>{item.descricao.slice(0, 180)}...</ItemDescription>
         <AddToCartBtn onClick={() => setModal({ visible: true })}>
           Adicionar ao carrinho
         </AddToCartBtn>
@@ -60,13 +77,15 @@ const Item = ({ nome, descricao, foto, id, preco, porcao }: Props) => {
           </header>
 
           <ModalInfo>
-            <img src={foto} alt={nome} />
+            <img src={item.foto} alt={item.nome} />
             <div>
-              <h3>{nome}</h3>
+              <h3>{item.nome}</h3>
               <p>
-                {descricao} <br /> <br /> Serve: de {porcao}
+                {item.descricao} <br /> <br /> Serve: de {item.porcao}
               </p>
-              <ModalBtn>Adicionar ao carrinho - {priceFormat(preco)}</ModalBtn>
+              <ModalBtn onClick={() => addToCart()}>
+                Adicionar ao carrinho - {priceFormat(item.preco)}
+              </ModalBtn>
             </div>
           </ModalInfo>
         </ModalContent>

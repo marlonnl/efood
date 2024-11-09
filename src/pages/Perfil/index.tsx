@@ -27,15 +27,7 @@ const Perfil = () => {
         <div className="container">
           <Grid>
             {restaurante.cardapio.map((menu) => (
-              <Item
-                key={menu.id}
-                nome={menu.nome}
-                descricao={menu.descricao}
-                foto={menu.foto}
-                preco={menu.preco}
-                id={menu.id}
-                porcao={menu.porcao}
-              />
+              <Item key={menu.id} item={menu} />
             ))}
           </Grid>
         </div>

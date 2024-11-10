@@ -15,7 +15,7 @@ export const Card = styled.div`
 
 export const CardContainer = styled.div`
   margin-top: -4px;
-  padding: 8px;
+  padding: 8px 8px 12px 8px;
   border-bottom: 1px solid ${colors.coral};
   border-left: 1px solid ${colors.coral};
   border-right: 1px solid ${colors.coral};

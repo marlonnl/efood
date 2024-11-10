@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../../store'
 
-import { close } from '../../store/reducers/cart'
+import { remove, close } from '../../store/reducers/cart'
 
 import { CartContainer, CartItem, Overlay, Sidebar, Subtotal } from './styles'
 import { priceFormat } from '../Item'
@@ -24,16 +24,25 @@ const Cart = () => {
     <CartContainer className={isOpen ? 'is-open' : ''}>
       <Overlay onClick={() => closeCart()} />
       <Sidebar>
-        {items.map((item) => (
-          <CartItem key={item.id}>
-            <img src={item.foto} alt="oi" />
-            <div>
-              <h3>{item.nome}</h3>
-              <p>{priceFormat(item.preco)}</p>
-              <button type="button" />
-            </div>
-          </CartItem>
-        ))}
+        {items.length < 1 ? (
+          <p>Não há ítens no seu carrinho.</p>
+        ) : (
+          items.map((item) => (
+            <>
+              <CartItem key={item.id}>
+                <img src={item.foto} alt="oi" />
+                <div>
+                  <h3>{item.nome}</h3>
+                  <p>{priceFormat(item.preco)}</p>
+                  <button
+                    type="button"
+                    onClick={() => dispatch(remove(item.id))}
+                  />
+                </div>
+              </CartItem>
+            </>
+          ))
+        )}
         <Subtotal>
           <p>Valor total</p>
           <p>{priceFormat(sumCart())}</p>

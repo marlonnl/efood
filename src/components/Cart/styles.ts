@@ -16,6 +16,12 @@ export const CartContainer = styled.div`
   &.is-open {
     display: flex;
   }
+
+  p {
+    font-size: 16px;
+    color: ${colors.footerBg};
+    margin-bottom: 16px;
+  }
 `
 
 export const Overlay = styled.div`

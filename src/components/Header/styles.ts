@@ -17,6 +17,10 @@ export const HeaderContainer = styled.div`
   font-size: 18px;
   font-weight: bold;
   color: ${colors.coral};
+
+  h1 {
+    line-height: 0;
+  }
 `
 
 export const HeaderP = styled.p`

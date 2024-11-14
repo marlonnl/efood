@@ -30,3 +30,11 @@ export const HeaderP = styled.p`
 export const HeaderPRight = styled.p`
   text-align: right;
 `
+
+export const CartLink = styled.span`
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`

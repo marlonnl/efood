@@ -1,5 +1,5 @@
-const Checkout = ({ onClose }: { onClose: () => void }) => (
-  <div>
+const Checkout = ({ onClose }: { onClose?: () => void }) => (
+  <div className="container">
     Pagamento - Valor a pagar R$ 0,00
     <div>
       <label htmlFor="cardName">Nome no cartão</label>

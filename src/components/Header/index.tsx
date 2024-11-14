@@ -1,20 +1,44 @@
-import Logo from '../Logo'
-import { HeaderContainer, HeaderP, HeaderPRight, HeaderStyle } from './styles'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootReducer } from '../../store'
 
-const Header = () => (
-  <HeaderStyle>
-    <div className="vectorBg">
-      <div className="container">
-        <HeaderContainer>
-          <HeaderP>Restaurantes</HeaderP>
-          <h1>
-            <Logo />
-          </h1>
-          <HeaderPRight>0 produto(s) no carrinho</HeaderPRight>
-        </HeaderContainer>
+import { open } from '../../store/reducers/cart'
+
+import Logo from '../Logo'
+import {
+  CartLink,
+  HeaderContainer,
+  HeaderP,
+  HeaderPRight,
+  HeaderStyle
+} from './styles'
+
+const Header = () => {
+  const { items } = useSelector((state: RootReducer) => state.cart)
+  const dispatch = useDispatch()
+
+  const openCart = () => {
+    dispatch(open())
+  }
+
+  return (
+    <HeaderStyle>
+      <div className="vectorBg">
+        <div className="container">
+          <HeaderContainer>
+            <HeaderP>Restaurantes</HeaderP>
+            <h1>
+              <Logo />
+            </h1>
+            <HeaderPRight>
+              <CartLink role="button" onClick={openCart}>
+                {items.length} produto(s) no carrinho
+              </CartLink>
+            </HeaderPRight>
+          </HeaderContainer>
+        </div>
       </div>
-    </div>
-  </HeaderStyle>
-)
+    </HeaderStyle>
+  )
+}
 
 export default Header

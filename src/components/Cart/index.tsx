@@ -33,7 +33,7 @@ const Cart = () => {
   return (
     <>
       <CartContainer className={isOpen ? 'is-open' : ''}>
-        {!showCheckout && <Overlay onClick={closeCart} />}
+        <Overlay onClick={closeCart} />
         <Sidebar>
           {items.length < 1 ? (
             <p>Não há ítens no seu carrinho.</p>

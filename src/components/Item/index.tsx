@@ -70,7 +70,7 @@ const Item = ({ item }: Props) => {
         <Button
           type="button"
           variant="secondary"
-          title="Adicionar item ao carrinho"
+          title={`Adicionar ${item.nome} ao carrinho`}
           onClick={() => setModal({ visible: true })}
         >
           Adicionar ao carrinho
@@ -91,7 +91,7 @@ const Item = ({ item }: Props) => {
               </p>
               <Button
                 type="button"
-                title="Adicionar item ao carrinho"
+                title={`Adicionar ${item.nome} ao carrinho`}
                 variant="secondary"
                 onClick={() => addToCart()}
               >

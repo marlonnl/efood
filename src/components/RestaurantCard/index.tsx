@@ -48,7 +48,11 @@ const RestaurantCard = ({
         </Nota>
       </CardHeader>
       <Description>{description}</Description>
-      <Button type="link" title="Ver restaurante" to={`/perfil/${id}`}>
+      <Button
+        type="link"
+        title={`Ver página do restaurante ${name}`}
+        to={`/perfil/${id}`}
+      >
         Saiba mais
       </Button>
     </CardContainer>

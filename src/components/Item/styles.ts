@@ -1,16 +1,23 @@
 import styled from 'styled-components'
 import { colors } from '../../styles/colors'
+import { ButtonContainer } from '../Button/styles'
 
 export const Card = styled.div`
   background-color: ${colors.coral};
   color: ${colors.footerBg};
   padding: 8px;
+  height: 100%;
 
   > img {
     display: block;
     width: 100%;
     height: 167px;
     object-fit: cover;
+  }
+
+  ${ButtonContainer} {
+    display: block;
+    width: 100%;
   }
 `
 
@@ -23,6 +30,7 @@ export const ItemName = styled.h3`
 export const ItemDescription = styled.p`
   font-size: 14px;
   margin-bottom: 8px;
+  display: block;
 `
 
 export const AddToCartBtn = styled.button`
@@ -107,6 +115,10 @@ export const ModalInfo = styled.div`
     max-width: 280px;
     max-height: 280px;
     object-fit: cover;
+  }
+
+  > div p {
+    margin-bottom: 16px;
   }
 `
 

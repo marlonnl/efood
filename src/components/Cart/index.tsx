@@ -7,6 +7,7 @@ import { CartContainer, CartItem, Overlay, Sidebar, Subtotal } from './styles'
 import { priceFormat } from '../Item'
 import { useState } from 'react'
 import Checkout from '../../pages/Checkout'
+import Button from '../Button'
 
 const Cart = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
@@ -57,7 +58,13 @@ const Cart = () => {
             <p>Valor total</p>
             <p>{priceFormat(sumCart())}</p>
           </Subtotal>
-          <button onClick={goCheckout}>Continuar com a entrega</button>
+          <Button
+            type="button"
+            title="Prosseguir para a página de entrega"
+            onClick={goCheckout}
+          >
+            Continuar com a entrega
+          </Button>
         </Sidebar>
       </CartContainer>
 

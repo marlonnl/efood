@@ -16,6 +16,7 @@ import {
 
 import closeImg from '../../assets/images/close.png'
 import { Cardapio } from '../../pages/Home'
+import Button from '../Button'
 
 // type Props = {
 //   nome: string
@@ -66,9 +67,14 @@ const Item = ({ item }: Props) => {
         <img src={item.foto} alt={item.nome} />
         <ItemName>{item.nome}</ItemName>
         <ItemDescription>{item.descricao.slice(0, 180)}...</ItemDescription>
-        <AddToCartBtn onClick={() => setModal({ visible: true })}>
+        <Button
+          type="button"
+          variant="secondary"
+          title="Adicionar item ao carrinho"
+          onClick={() => setModal({ visible: true })}
+        >
           Adicionar ao carrinho
-        </AddToCartBtn>
+        </Button>
       </Card>
       <Modal className={modal.visible ? 'visible' : ''}>
         <ModalContent>
@@ -83,9 +89,14 @@ const Item = ({ item }: Props) => {
               <p>
                 {item.descricao} <br /> <br /> Serve: de {item.porcao}
               </p>
-              <ModalBtn onClick={() => addToCart()}>
-                Adicionar ao carrinho - {priceFormat(item.preco)}
-              </ModalBtn>
+              <Button
+                type="button"
+                title="Adicionar item ao carrinho"
+                variant="secondary"
+                onClick={() => addToCart()}
+              >
+                <span>Adicionar ao carrinho - {priceFormat(item.preco)}</span>
+              </Button>
             </div>
           </ModalInfo>
         </ModalContent>

@@ -11,6 +11,7 @@ import {
 import star from '../../assets/images/estrela.png'
 import Tag from '../Tag'
 import { SaibaMais } from '../Tag/styles'
+import Button from '../Button'
 
 type Props = {
   name: string
@@ -47,7 +48,9 @@ const RestaurantCard = ({
         </Nota>
       </CardHeader>
       <Description>{description}</Description>
-      <SaibaMais to={`/perfil/${id}`}>Saiba mais</SaibaMais>
+      <Button type="link" title="Ver restaurante" to={`/perfil/${id}`}>
+        Saiba mais
+      </Button>
     </CardContainer>
   </Card>
 )

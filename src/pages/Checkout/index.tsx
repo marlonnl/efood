@@ -19,19 +19,16 @@ const Checkout = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
   const dispatch = useDispatch()
 
-  const [isCartOpen, setIsCartOpen] = useState(false)
+  const [isCartOpen, setIsCartOpen] = useState(true)
   const [isDeliveryOpen, setIsDeliveryOpen] = useState(false)
   const [isPayementOpen, setIsPayementOpen] = useState(false)
+  const [isFinalized, setIsFinalized] = useState(false)
 
-  const goBackToCart = () => {
+  const closeCart = () => {
     setIsCartOpen(true)
     setIsDeliveryOpen(false)
     setIsPayementOpen(false)
-  }
-
-  const closeCart = () => {
-    setIsDeliveryOpen(false)
-    setIsPayementOpen(false)
+    setIsFinalized(false)
     dispatch(close())
   }
 
@@ -41,10 +38,32 @@ const Checkout = () => {
     }, 0)
   }
 
+  const goBackToCart = () => {
+    setIsCartOpen(true)
+    setIsDeliveryOpen(false)
+    setIsPayementOpen(false)
+    setIsFinalized(false)
+  }
+
   const goDelivery = () => {
     setIsCartOpen(false)
     setIsDeliveryOpen(true)
     setIsPayementOpen(false)
+    setIsFinalized(false)
+  }
+
+  const goToPayement = () => {
+    setIsCartOpen(false)
+    setIsDeliveryOpen(false)
+    setIsPayementOpen(true)
+    setIsFinalized(false)
+  }
+
+  const goToFinal = () => {
+    setIsCartOpen(false)
+    setIsDeliveryOpen(false)
+    setIsPayementOpen(false)
+    setIsFinalized(true)
   }
 
   return (
@@ -124,6 +143,7 @@ const Checkout = () => {
                     title="Prosseguir para o pagamento"
                     type="button"
                     variant="secondary"
+                    onClick={goToPayement}
                   >
                     Continuar com o pagamento
                   </Button>
@@ -142,6 +162,83 @@ const Checkout = () => {
                 </InputGroup>
               </Row>
             </form>
+          </Sidebar>
+        )}
+
+        {isPayementOpen && (
+          <Sidebar>
+            <SideTitle>Pagamento - Valor a pagar R$ 0,00</SideTitle>
+            <Row>
+              <InputGroup>
+                <label htmlFor="cardName">Nome no cartão</label>
+                <input type="text" name="cardName" id="cardName" />
+              </InputGroup>
+            </Row>
+            <Row>
+              <InputGroup>
+                <label htmlFor="cardNumber">Número do cartão</label>
+                <input type="text" name="cardNumber" id="cardNumber" />
+              </InputGroup>
+              <InputGroup maxWidth="88px">
+                <label htmlFor="cvv">CVV</label>
+                <input type="text" name="cvv" id="cvv" />
+              </InputGroup>
+            </Row>
+            <Row>
+              <InputGroup>
+                <label htmlFor="expMonth">Mês de vencimento</label>
+                <input type="text" name="expMonth" id="expMonth" />
+              </InputGroup>
+              <InputGroup>
+                <label htmlFor="expYear">Ano de vencimento</label>
+                <input type="text" name="expYear" id="expYear" />
+              </InputGroup>
+            </Row>
+            <Row className="margin-top">
+              <InputGroup>
+                <Button
+                  variant="secondary"
+                  title="Finalizar o pagamento"
+                  type="button"
+                  onClick={goToFinal}
+                >
+                  Finalizar pagamento
+                </Button>
+              </InputGroup>
+            </Row>
+            <Button
+              variant="secondary"
+              title="Voltar para a edição do endereço"
+              type="button"
+              onClick={goDelivery}
+            >
+              Voltar para a edição do endereço
+            </Button>
+          </Sidebar>
+        )}
+
+        {isFinalized && (
+          <Sidebar>
+            <SideTitle>Pedido realizado - ORDER_ID</SideTitle>
+            <Row>
+              <p>
+                Estamos felizes em informar que seu pedido já está em processo
+                de preparação e, em breve, será entregue no endereço fornecido.
+                <br />
+                <br />
+                Gostaríamos de ressaltar que nossos entregadores não estão
+                autorizados a realizar cobranças extras.
+                <br />
+                <br />
+                Lembre-se da importância de higienizar as mãos após o
+                recebimento do pedido, garantindo assim sua segurança e
+                bem-estar durante a refeição
+                <br />
+                <br />
+                Esperamos que desfrute de uma deliciosa e agradável experiência
+                gastronômica. Bom apetite!
+              </p>
+            </Row>
           </Sidebar>
         )}
       </CartContainer>

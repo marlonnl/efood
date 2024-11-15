@@ -15,7 +15,7 @@ export const SideTitle = styled.p`
 
 export const Row = styled.div`
   display: flex;
-  column-gap: 24px;
+  column-gap: 34px;
   color: ${colors.footerBg};
   font-size: 14px;
   font-weight: bold;
@@ -23,6 +23,11 @@ export const Row = styled.div`
 
   &.margin-top {
     margin-top: 24px;
+  }
+
+  p {
+    font-size: 14px;
+    font-weight: normal;
   }
 `
 
@@ -82,17 +87,6 @@ export const Sidebar = styled.aside`
   max-width: 360px;
   width: 100%;
   padding: 32px 8px 0 8px;
-
-  button {
-    color: ${colors.coral};
-    background-color: ${colors.footerBg};
-    border: none;
-    width: 100%;
-    padding: 4px 0;
-    font-weight: bold;
-    font-size: 14px;
-    cursor: pointer;
-  }
 `
 
 export const CartItem = styled.div`

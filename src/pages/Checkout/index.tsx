@@ -6,14 +6,8 @@ import { open, close, remove } from '../../store/reducers/cart'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../../store'
 import { priceFormat } from '../../components/Item'
-
-type CheckoutPhase = {
-  phase: 'cart' | 'delivery' | 'payement' | 'finalized'
-}
-
-// TODO
-// usar o state para o carrinho
-// usar CLASSES do CSS para mostrar/fechar o delivery/pagamento/finalizado
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
 
 const Checkout = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
@@ -65,6 +59,30 @@ const Checkout = () => {
     setIsPayementOpen(false)
     setIsFinalized(true)
   }
+
+  const form = useFormik({
+    initialValues: {
+      receiver: '',
+      address: '',
+      city: '',
+      cep: '',
+      addressNumber: '',
+      other: ''
+    },
+    validationSchema: Yup.object({
+      receiver: Yup.string()
+        .min(4, 'O nome precisa ter no mínimo 4 caracteres.')
+        .required(),
+      address: Yup.string().required('O endereço é obrigatório'),
+      city: Yup.string().required(),
+      cep: Yup.string().min(8, '').max(8, '').required(),
+      addressNumber: Yup.string().required(),
+      other: Yup.string()
+    }),
+    onSubmit: (values) => {
+      console.log('oi')
+    }
+  })
 
   return (
     <>
@@ -168,52 +186,54 @@ const Checkout = () => {
         {isPayementOpen && (
           <Sidebar>
             <SideTitle>Pagamento - Valor a pagar R$ 0,00</SideTitle>
-            <Row>
-              <InputGroup>
-                <label htmlFor="cardName">Nome no cartão</label>
-                <input type="text" name="cardName" id="cardName" />
-              </InputGroup>
-            </Row>
-            <Row>
-              <InputGroup>
-                <label htmlFor="cardNumber">Número do cartão</label>
-                <input type="text" name="cardNumber" id="cardNumber" />
-              </InputGroup>
-              <InputGroup maxWidth="88px">
-                <label htmlFor="cvv">CVV</label>
-                <input type="text" name="cvv" id="cvv" />
-              </InputGroup>
-            </Row>
-            <Row>
-              <InputGroup>
-                <label htmlFor="expMonth">Mês de vencimento</label>
-                <input type="text" name="expMonth" id="expMonth" />
-              </InputGroup>
-              <InputGroup>
-                <label htmlFor="expYear">Ano de vencimento</label>
-                <input type="text" name="expYear" id="expYear" />
-              </InputGroup>
-            </Row>
-            <Row className="margin-top">
-              <InputGroup>
-                <Button
-                  variant="secondary"
-                  title="Finalizar o pagamento"
-                  type="button"
-                  onClick={goToFinal}
-                >
-                  Finalizar pagamento
-                </Button>
-              </InputGroup>
-            </Row>
-            <Button
-              variant="secondary"
-              title="Voltar para a edição do endereço"
-              type="button"
-              onClick={goDelivery}
-            >
-              Voltar para a edição do endereço
-            </Button>
+            <form>
+              <Row>
+                <InputGroup>
+                  <label htmlFor="cardName">Nome no cartão</label>
+                  <input type="text" name="cardName" id="cardName" />
+                </InputGroup>
+              </Row>
+              <Row>
+                <InputGroup>
+                  <label htmlFor="cardNumber">Número do cartão</label>
+                  <input type="text" name="cardNumber" id="cardNumber" />
+                </InputGroup>
+                <InputGroup maxWidth="88px">
+                  <label htmlFor="cvv">CVV</label>
+                  <input type="text" name="cvv" id="cvv" />
+                </InputGroup>
+              </Row>
+              <Row>
+                <InputGroup>
+                  <label htmlFor="expMonth">Mês de vencimento</label>
+                  <input type="text" name="expMonth" id="expMonth" />
+                </InputGroup>
+                <InputGroup>
+                  <label htmlFor="expYear">Ano de vencimento</label>
+                  <input type="text" name="expYear" id="expYear" />
+                </InputGroup>
+              </Row>
+              <Row className="margin-top">
+                <InputGroup>
+                  <Button
+                    variant="secondary"
+                    title="Finalizar o pagamento"
+                    type="button"
+                    onClick={goToFinal}
+                  >
+                    Finalizar pagamento
+                  </Button>
+                </InputGroup>
+              </Row>
+              <Button
+                variant="secondary"
+                title="Voltar para a edição do endereço"
+                type="button"
+                onClick={goDelivery}
+              >
+                Voltar para a edição do endereço
+              </Button>
+            </form>
           </Sidebar>
         )}
 

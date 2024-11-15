@@ -67,10 +67,6 @@ const Cart = () => {
           </Button>
         </Sidebar>
       </CartContainer>
-
-      {showCheckout && <Checkout onClose={() => setShowCheckout(false)} />}
     </>
   )
 }
-
-export default Cart

@@ -6,9 +6,10 @@ import { store } from './store'
 import { GlobalStyle } from './styles'
 
 import Footer from './components/Footer'
-import Cart from './components/Cart'
+// import Cart from './components/Cart'
 
 import Rotas from './routes'
+import Checkout from './pages/Checkout'
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         <GlobalStyle />
         <Rotas />
         <Footer />
-        <Cart />
+        <Checkout />
       </BrowserRouter>
     </Provider>
   )

@@ -9,6 +9,8 @@ import { priceFormat } from '../../components/Item'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
+import InputMask from 'react-input-mask'
+
 const Checkout = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
   const dispatch = useDispatch()
@@ -67,7 +69,12 @@ const Checkout = () => {
       city: '',
       cep: '',
       addressNumber: '',
-      other: ''
+      other: '',
+      cardName: '',
+      cardNumber: '',
+      cvv: '',
+      expMonth: '',
+      expYear: ''
     },
     validationSchema: Yup.object({
       receiver: Yup.string()
@@ -75,14 +82,37 @@ const Checkout = () => {
         .required(),
       address: Yup.string().required('O endereço é obrigatório'),
       city: Yup.string().required(),
-      cep: Yup.string().min(8, '').max(8, '').required(),
+      cep: Yup.string()
+        .min(9, 'CEP inválido')
+        .max(9, 'CEP inválido')
+        .required(),
       addressNumber: Yup.string().required(),
-      other: Yup.string()
+      other: Yup.string(),
+
+      cardName: Yup.string()
+        .min(4, 'O nome precisa ter no mínimo 4 caracteres')
+        .required(),
+      cardNumber: Yup.string()
+        .min(19, 'Número do cartão inválido')
+        .max(19, 'Número do cartão inválido')
+        .required(),
+      cvv: Yup.string().min(3).max(3).required(),
+      expMonth: Yup.string().min(2).max(2).required(),
+      expYear: Yup.string().min(2).max(2).required()
     }),
     onSubmit: (values) => {
       console.log('oi')
     }
   })
+
+  const checkInputHasError = (fieldName: string) => {
+    const isTouched = fieldName in form.touched
+    const isInvalid = fieldName in form.errors
+
+    const hasError = isTouched && isInvalid
+
+    return hasError
+  }
 
   return (
     <>
@@ -124,35 +154,85 @@ const Checkout = () => {
               <Row>
                 <InputGroup>
                   <label htmlFor="receiver">Quem irá receber</label>
-                  <input type="text" name="receiver" id="receiver" />
+                  <input
+                    type="text"
+                    name="receiver"
+                    id="receiver"
+                    value={form.values.receiver}
+                    onChange={form.handleChange}
+                    onBlur={form.handleBlur}
+                    className={checkInputHasError('receiver') ? 'error' : ''}
+                  />
                 </InputGroup>
               </Row>
               <Row>
                 <InputGroup>
                   <label htmlFor="address">Endereço</label>
-                  <input type="text" name="address" id="address" />
+                  <input
+                    type="text"
+                    name="address"
+                    id="address"
+                    value={form.values.address}
+                    onChange={form.handleChange}
+                    onBlur={form.handleBlur}
+                    className={checkInputHasError('address') ? 'error' : ''}
+                  />
                 </InputGroup>
               </Row>
               <Row>
                 <InputGroup>
                   <label htmlFor="city">Cidade</label>
-                  <input type="text" name="city" id="city" />
+                  <input
+                    type="text"
+                    name="city"
+                    id="city"
+                    value={form.values.city}
+                    onChange={form.handleChange}
+                    onBlur={form.handleBlur}
+                    className={checkInputHasError('city') ? 'error' : ''}
+                  />
                 </InputGroup>
               </Row>
               <Row>
-                <InputGroup maxWidth="50%">
+                <InputGroup maxWidth="155px">
                   <label htmlFor="cep">CEP</label>
-                  <input type="text" name="cep" id="cep" />
+                  <InputMask
+                    type="text"
+                    name="cep"
+                    id="cep"
+                    value={form.values.cep}
+                    onChange={form.handleChange}
+                    onBlur={form.handleBlur}
+                    mask="99999-999"
+                    className={checkInputHasError('cep') ? 'error' : ''}
+                  />
                 </InputGroup>
-                <InputGroup maxWidth="50%">
+                <InputGroup maxWidth="155px">
                   <label htmlFor="addressNumber">Número</label>
-                  <input type="text" name="addressNumber" id="addressNumber" />
+                  <input
+                    type="text"
+                    name="addressNumber"
+                    id="addressNumber"
+                    value={form.values.addressNumber}
+                    onChange={form.handleChange}
+                    onBlur={form.handleBlur}
+                    className={
+                      checkInputHasError('addressNumber') ? 'error' : ''
+                    }
+                  />
                 </InputGroup>
               </Row>
               <Row>
                 <InputGroup>
                   <label htmlFor="other">Complemento (opcional)</label>
-                  <input type="text" name="other" id="other" />
+                  <input
+                    type="text"
+                    name="other"
+                    id="other"
+                    value={form.values.other}
+                    onChange={form.handleChange}
+                    onBlur={form.handleBlur}
+                  />
                 </InputGroup>
               </Row>
               <Row className="margin-top">
@@ -190,27 +270,71 @@ const Checkout = () => {
               <Row>
                 <InputGroup>
                   <label htmlFor="cardName">Nome no cartão</label>
-                  <input type="text" name="cardName" id="cardName" />
+                  <input
+                    type="text"
+                    name="cardName"
+                    id="cardName"
+                    value={form.values.cardName}
+                    onChange={form.handleChange}
+                    onBlur={form.handleBlur}
+                    className={checkInputHasError('cardName') ? 'error' : ''}
+                  />
                 </InputGroup>
               </Row>
               <Row>
                 <InputGroup>
                   <label htmlFor="cardNumber">Número do cartão</label>
-                  <input type="text" name="cardNumber" id="cardNumber" />
+                  <InputMask
+                    type="text"
+                    name="cardNumber"
+                    id="cardNumber"
+                    value={form.values.cardNumber}
+                    onChange={form.handleChange}
+                    onBlur={form.handleBlur}
+                    className={checkInputHasError('cardNumber') ? 'error' : ''}
+                    mask="9999 9999 9999 9999"
+                  />
                 </InputGroup>
                 <InputGroup maxWidth="88px">
                   <label htmlFor="cvv">CVV</label>
-                  <input type="text" name="cvv" id="cvv" />
+                  <InputMask
+                    type="text"
+                    name="cvv"
+                    id="cvv"
+                    value={form.values.cvv}
+                    onChange={form.handleChange}
+                    onBlur={form.handleBlur}
+                    className={checkInputHasError('cvv') ? 'error' : ''}
+                    mask="999"
+                  />
                 </InputGroup>
               </Row>
               <Row>
-                <InputGroup>
+                <InputGroup maxWidth="155px">
                   <label htmlFor="expMonth">Mês de vencimento</label>
-                  <input type="text" name="expMonth" id="expMonth" />
+                  <InputMask
+                    type="text"
+                    name="expMonth"
+                    id="expMonth"
+                    value={form.values.expMonth}
+                    onChange={form.handleChange}
+                    onBlur={form.handleBlur}
+                    className={checkInputHasError('expMonth') ? 'error' : ''}
+                    mask="99"
+                  />
                 </InputGroup>
-                <InputGroup>
+                <InputGroup maxWidth="155px">
                   <label htmlFor="expYear">Ano de vencimento</label>
-                  <input type="text" name="expYear" id="expYear" />
+                  <InputMask
+                    type="text"
+                    name="expYear"
+                    id="expYear"
+                    value={form.values.expYear}
+                    onChange={form.handleChange}
+                    onBlur={form.handleBlur}
+                    className={checkInputHasError('expYear') ? 'error' : ''}
+                    mask="99"
+                  />
                 </InputGroup>
               </Row>
               <Row className="margin-top">

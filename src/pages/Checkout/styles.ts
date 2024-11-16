@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { colors } from '../../styles/colors'
 import lixeira from '../../assets/images/lixeira.png'
 
-import { ButtonContainer } from '../../components/Button/styles'
+import invalidInput from '../../assets/images/invalid-input.png'
 
 type MaxWidth = {
   maxWidth?: string
@@ -43,10 +43,20 @@ export const InputGroup = styled.div<MaxWidth>`
   input {
     padding: 8px;
     background-color: ${colors.footerBg};
-    border: none;
+    border: 1px solid ${colors.footerBg};
     font-size: 14px;
     font-weight: bold;
     width: 100%;
+
+    &.error {
+      border: 1px dashed red;
+      margin-right: 20px;
+      background-image: url(${invalidInput});
+      background-position: 98% 10px;
+      background-repeat: no-repeat;
+      background-size: 14px;
+      background-color: ${colors.footerBg};
+    }
   }
 `
 

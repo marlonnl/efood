@@ -6,7 +6,6 @@ import { remove, close } from '../../store/reducers/cart'
 import { CartContainer, CartItem, Overlay, Sidebar, Subtotal } from './styles'
 import { priceFormat } from '../Item'
 import { useState } from 'react'
-import Checkout from '../../pages/Checkout'
 import Button from '../Button'
 
 const Cart = () => {

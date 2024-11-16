@@ -7,15 +7,12 @@ import {
   Card,
   ItemDescription,
   ItemName,
-  AddToCartBtn,
   Modal,
   ModalContent,
-  ModalInfo,
-  ModalBtn
+  ModalInfo
 } from './styles'
 
 import closeImg from '../../assets/images/close.png'
-import { Cardapio } from '../../pages/Home'
 import Button from '../Button'
 
 // type Props = {

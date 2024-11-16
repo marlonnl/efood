@@ -10,7 +10,6 @@ import {
 
 import star from '../../assets/images/estrela.png'
 import Tag from '../Tag'
-import { SaibaMais } from '../Tag/styles'
 import Button from '../Button'
 
 type Props = {

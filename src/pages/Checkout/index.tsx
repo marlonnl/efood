@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Button from '../../components/Button'
 import { CartContainer, Overlay, Sidebar } from '../../components/Cart/styles'
 import { CartItem, InputGroup, Row, SideTitle, Subtotal } from './styles'
@@ -10,10 +10,13 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
 import InputMask from 'react-input-mask'
+import { usePurchaseMutation } from '../../services/api'
 
 const Checkout = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
   const dispatch = useDispatch()
+
+  const [purchase, { isLoading, isSuccess, data }] = usePurchaseMutation()
 
   const [isCartOpen, setIsCartOpen] = useState(true)
   const [isDeliveryOpen, setIsDeliveryOpen] = useState(false)
@@ -67,9 +70,9 @@ const Checkout = () => {
       receiver: '',
       address: '',
       city: '',
-      cep: '',
+      zipCode: '',
       addressNumber: '',
-      other: '',
+      complement: '',
       cardName: '',
       cardNumber: '',
       cvv: '',
@@ -82,12 +85,12 @@ const Checkout = () => {
         .required(),
       address: Yup.string().required('O endereço é obrigatório'),
       city: Yup.string().required(),
-      cep: Yup.string()
+      zipCode: Yup.string()
         .min(9, 'CEP inválido')
         .max(9, 'CEP inválido')
         .required(),
       addressNumber: Yup.string().required(),
-      other: Yup.string(),
+      complement: Yup.string(),
 
       cardName: Yup.string()
         .min(4, 'O nome precisa ter no mínimo 4 caracteres')
@@ -98,10 +101,36 @@ const Checkout = () => {
         .required(),
       cvv: Yup.string().min(3).max(3).required(),
       expMonth: Yup.string().min(2).max(2).required(),
-      expYear: Yup.string().min(2).max(2).required()
+      expYear: Yup.string().min(4).max(4).required()
     }),
     onSubmit: (values) => {
-      console.log('oi')
+      purchase({
+        products: items.map((item) => ({
+          id: item.id,
+          price: item.preco as number
+        })),
+        delivery: {
+          receiver: values.receiver,
+          address: {
+            description: values.address,
+            city: values.city,
+            zipCode: values.zipCode,
+            number: Number(values.addressNumber),
+            complement: values.complement
+          }
+        },
+        payment: {
+          card: {
+            name: values.cardName,
+            number: values.cardNumber,
+            code: Number(values.cvv),
+            expires: {
+              month: Number(values.expMonth),
+              year: Number(values.expYear)
+            }
+          }
+        }
+      })
     }
   })
 
@@ -113,6 +142,12 @@ const Checkout = () => {
 
     return hasError
   }
+
+  useEffect(() => {
+    if (isSuccess) {
+      goToFinal()
+    }
+  }, [isSuccess])
 
   return (
     <>
@@ -195,16 +230,16 @@ const Checkout = () => {
               </Row>
               <Row>
                 <InputGroup maxWidth="155px">
-                  <label htmlFor="cep">CEP</label>
+                  <label htmlFor="zipCode">CEP</label>
                   <InputMask
                     type="text"
-                    name="cep"
-                    id="cep"
-                    value={form.values.cep}
+                    name="zipCode"
+                    id="zipCode"
+                    value={form.values.zipCode}
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
                     mask="99999-999"
-                    className={checkInputHasError('cep') ? 'error' : ''}
+                    className={checkInputHasError('zipCode') ? 'error' : ''}
                   />
                 </InputGroup>
                 <InputGroup maxWidth="155px">
@@ -224,12 +259,12 @@ const Checkout = () => {
               </Row>
               <Row>
                 <InputGroup>
-                  <label htmlFor="other">Complemento (opcional)</label>
+                  <label htmlFor="complement">Complemento (opcional)</label>
                   <input
                     type="text"
-                    name="other"
-                    id="other"
-                    value={form.values.other}
+                    name="complement"
+                    id="complement"
+                    value={form.values.complement}
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
                   />
@@ -333,7 +368,7 @@ const Checkout = () => {
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
                     className={checkInputHasError('expYear') ? 'error' : ''}
-                    mask="99"
+                    mask="9999"
                   />
                 </InputGroup>
               </Row>

@@ -1,3 +1,4 @@
+import Loader from '../../components/Loader'
 import Hero from '../../containers/Hero'
 import RestaurantList from '../../containers/RestaurantList'
 import { useGetRestaurantsQuery } from '../../services/api'
@@ -5,18 +6,18 @@ import { useGetRestaurantsQuery } from '../../services/api'
 const Home = () => {
   const { data: restaurants } = useGetRestaurantsQuery()
 
-  if (restaurants) {
-    return (
-      <>
-        <Hero />
-        <div className="container">
-          <RestaurantList restaurants={restaurants} />
-        </div>
-      </>
-    )
+  if (!restaurants) {
+    return <Loader />
   }
 
-  return <h4>Carregando...</h4>
+  return (
+    <>
+      <Hero />
+      <div className="container">
+        <RestaurantList restaurants={restaurants} />
+      </div>
+    </>
+  )
 }
 
 export default Home

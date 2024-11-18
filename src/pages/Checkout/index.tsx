@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import Button from '../../components/Button'
 import { CartContainer, Overlay, Sidebar } from '../../components/Cart/styles'
 import { CartItem, InputGroup, Row, SideTitle, Subtotal } from './styles'
-import { open, close, remove, clear } from '../../store/reducers/cart'
+import { close, remove, clear } from '../../store/reducers/cart'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../../store'
 import { priceFormat } from '../../components/Item'
@@ -11,6 +11,7 @@ import * as Yup from 'yup'
 
 import InputMask from 'react-input-mask'
 import { usePurchaseMutation } from '../../services/api'
+import { Navigate } from 'react-router-dom'
 
 const Checkout = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
@@ -149,6 +150,10 @@ const Checkout = () => {
       dispatch(clear())
     }
   }, [dispatch, isSuccess])
+
+  if (items.length === 0 && !isSuccess) {
+    return <Navigate to="/" />
+  }
 
   return (
     <>
@@ -427,8 +432,11 @@ const Checkout = () => {
                           title="Finalizar o pagamento"
                           type="submit"
                           onClick={form.handleSubmit}
+                          disabled={isLoading}
                         >
-                          Finalizar pagamento
+                          {isLoading
+                            ? 'Finalizando pagamento...'
+                            : 'Finalizar pagamento'}
                         </Button>
                       </InputGroup>
                     </Row>

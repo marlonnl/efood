@@ -151,9 +151,9 @@ const Checkout = () => {
     }
   }, [dispatch, isSuccess])
 
-  if (items.length === 0 && !isSuccess) {
-    return <Navigate to="/" />
-  }
+  // if (items.length === 0 && !isSuccess) {
+  //   return <Navigate to="/" />
+  // }
 
   return (
     <>
@@ -188,30 +188,38 @@ const Checkout = () => {
             <>
               {isCartOpen && (
                 <Sidebar>
-                  {items.map((item) => (
-                    <CartItem key={item.id}>
-                      <img src={item.foto} alt="oi" />
-                      <div>
-                        <h3>{item.nome}</h3>
-                        <p>{priceFormat(item.preco)}</p>
-                        <button
-                          type="button"
-                          onClick={() => dispatch(remove(item.id))}
-                        />
-                      </div>
-                    </CartItem>
-                  ))}
-                  <Subtotal>
-                    <p>Valor total</p>
-                    <p>{priceFormat(sumCart())}</p>
-                  </Subtotal>
-                  <Button
-                    type="button"
-                    title="Prosseguir para a página de entrega"
-                    onClick={goDelivery}
-                  >
-                    Continuar com a entrega
-                  </Button>
+                  {items.length > 0 ? (
+                    <>
+                      {items.map((item) => (
+                        <CartItem key={item.id}>
+                          <img src={item.foto} alt="oi" />
+                          <div>
+                            <h3>{item.nome}</h3>
+                            <p>{priceFormat(item.preco)}</p>
+                            <button
+                              type="button"
+                              onClick={() => dispatch(remove(item.id))}
+                            />
+                          </div>
+                        </CartItem>
+                      ))}
+                      <Subtotal>
+                        <p>Valor total</p>
+                        <p>{priceFormat(sumCart())}</p>
+                      </Subtotal>
+                      <Button
+                        type="button"
+                        title="Prosseguir para a página de entrega"
+                        onClick={goDelivery}
+                      >
+                        Continuar com a entrega
+                      </Button>
+                    </>
+                  ) : (
+                    <p className="emptyCart">
+                      Não há ítens no seu carrinho ainda :(
+                    </p>
+                  )}
                 </Sidebar>
               )}
             </>

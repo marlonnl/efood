@@ -97,6 +97,13 @@ export const Sidebar = styled.aside`
   max-width: 360px;
   width: 100%;
   padding: 32px 8px 0 8px;
+
+  .emptyCart {
+    font-size: 14px;
+    line-height: 22px;
+    color: ${colors.coral};
+    text-align: center;
+  }
 `
 
 export const CartItem = styled.div`

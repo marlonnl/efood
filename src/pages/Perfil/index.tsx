@@ -6,13 +6,18 @@ import Banner from '../../components/Banner'
 import Header from '../../components/Header'
 import Item from '../../components/Item'
 import { useGetRestaurantQuery } from '../../services/api'
+import Loader from '../../components/Loader'
+
+type RestaurantParams = {
+  id: string
+}
 
 const Perfil = () => {
-  const { id } = useParams()
-  const { data: restaurante } = useGetRestaurantQuery(id!)
+  const { id } = useParams() as RestaurantParams
+  const { data: restaurante } = useGetRestaurantQuery(id)
 
   if (!restaurante) {
-    return <h3>Carregando...</h3>
+    return <Loader />
   }
 
   return (

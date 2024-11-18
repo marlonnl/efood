@@ -32,7 +32,7 @@ type PurchasePayload = {
 
 // TODO: verificar resposta
 type PurchaseResponse = {
-  order_id: string
+  orderId: string
 }
 
 const api = createApi({

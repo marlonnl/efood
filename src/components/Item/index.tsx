@@ -14,15 +14,7 @@ import {
 
 import closeImg from '../../assets/images/close.png'
 import Button from '../Button'
-
-// type Props = {
-//   nome: string
-//   descricao: string
-//   foto: string
-//   id: number
-//   preco: number
-//   porcao: string
-// }
+import { priceFormat } from '../../utils'
 
 type Props = {
   item: Cardapio
@@ -30,13 +22,6 @@ type Props = {
 
 type ModalState = {
   visible: boolean
-}
-
-export const priceFormat = (price = 0) => {
-  return new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL'
-  }).format(price)
 }
 
 const Item = ({ item }: Props) => {

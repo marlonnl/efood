@@ -11,13 +11,19 @@ const Footer = () => (
       <Logo />
       <SocialList>
         <li>
-          <img src={igLogo} alt="Instagram" />
+          <a href="">
+            <img src={igLogo} alt="Instagram" />
+          </a>
         </li>
         <li>
-          <img src={fbLogo} alt="Facebook" />
+          <a href="">
+            <img src={fbLogo} alt="Facebook" />
+          </a>
         </li>
         <li>
-          <img src={twLogo} alt="Twitter" />
+          <a href="">
+            <img src={twLogo} alt="Twitter" />
+          </a>
         </li>
       </SocialList>
 

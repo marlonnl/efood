@@ -3,6 +3,7 @@ import { colors } from '../../styles/colors'
 import lixeira from '../../assets/images/lixeira.png'
 
 import invalidInput from '../../assets/images/invalid-input.png'
+import { ButtonContainer } from '../../components/Button/styles'
 
 type MaxWidth = {
   maxWidth?: string
@@ -103,6 +104,10 @@ export const Sidebar = styled.aside`
     line-height: 22px;
     color: ${colors.coral};
     text-align: center;
+  }
+
+  ${ButtonContainer} {
+    width: 100%;
   }
 `
 

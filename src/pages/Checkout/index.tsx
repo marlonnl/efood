@@ -1,17 +1,25 @@
 import { useEffect, useState } from 'react'
 import Button from '../../components/Button'
-import { CartContainer, Overlay, Sidebar } from '../../components/Cart/styles'
-import { CartItem, InputGroup, Row, SideTitle, Subtotal } from './styles'
+import {
+  CartContainer,
+  CartItem,
+  InputGroup,
+  Overlay,
+  Row,
+  Sidebar,
+  SideTitle,
+  Subtotal
+} from './styles'
 import { close, remove, clear } from '../../store/reducers/cart'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../../store'
-import { priceFormat } from '../../components/Item'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
 import InputMask from 'react-input-mask'
 import { usePurchaseMutation } from '../../services/api'
 import { Navigate } from 'react-router-dom'
+import { priceFormat, sumCart } from '../../utils'
 
 const Checkout = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
@@ -30,12 +38,6 @@ const Checkout = () => {
     setIsPayementOpen(false)
     setIsFinalized(false)
     dispatch(close())
-  }
-
-  const sumCart = () => {
-    return items.reduce((acc, actualPrice) => {
-      return (acc += actualPrice.preco)
-    }, 0)
   }
 
   const goBackToCart = () => {
@@ -205,11 +207,12 @@ const Checkout = () => {
                       ))}
                       <Subtotal>
                         <p>Valor total</p>
-                        <p>{priceFormat(sumCart())}</p>
+                        <p>{priceFormat(sumCart(items))}</p>
                       </Subtotal>
                       <Button
                         type="button"
                         title="Prosseguir para a página de entrega"
+                        variant="secondary"
                         onClick={goDelivery}
                       >
                         Continuar com a entrega
@@ -352,7 +355,7 @@ const Checkout = () => {
               {isPayementOpen && (
                 <Sidebar>
                   <SideTitle>
-                    Pagamento - Valor a pagar {priceFormat(sumCart())}
+                    Pagamento - Valor a pagar {priceFormat(sumCart(items))}
                   </SideTitle>
                   <form onSubmit={form.handleSubmit}>
                     <Row>

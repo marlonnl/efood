@@ -6,7 +6,9 @@ export const Card = styled.div`
   background-color: ${colors.coral};
   color: ${colors.footerBg};
   padding: 8px;
+
   height: 100%;
+  display: block;
 
   > img {
     display: block;
@@ -16,7 +18,6 @@ export const Card = styled.div`
   }
 
   ${ButtonContainer} {
-    display: block;
     width: 100%;
   }
 `
@@ -25,24 +26,13 @@ export const ItemName = styled.h3`
   font-size: 16px;
   font-weight: bold;
   padding: 8px 0;
+  display: block;
 `
 
 export const ItemDescription = styled.p`
   font-size: 14px;
   margin-bottom: 8px;
-  display: block;
-`
-
-export const AddToCartBtn = styled.button`
-  border: none;
-  outline: none;
-  color: ${colors.coral};
-  background-color: ${colors.footerBg};
-  font-weight: bold;
-  font-size: 14px;
-  padding: 4px 0;
-  width: 100%;
-  cursor: pointer;
+  /* display: block; */
 `
 
 export const Modal = styled.div`

@@ -48,7 +48,7 @@ const Item = ({ item }: Props) => {
       <Card>
         <img src={item.foto} alt={item.nome} />
         <ItemName>{item.nome}</ItemName>
-        <ItemDescription>{item.descricao.slice(0, 180)}...</ItemDescription>
+        <ItemDescription>{item.descricao.slice(0, 160)}...</ItemDescription>
         <Button
           type="button"
           variant="secondary"

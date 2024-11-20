@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { colors } from '../../styles/colors'
+import { breakpoints } from '../../styles'
 
 export const Card = styled.div`
   color: ${colors.coral};
@@ -10,6 +11,10 @@ export const Card = styled.div`
     max-height: 315px;
     height: 100%;
     object-fit: cover;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    margin-bottom: 48px;
   }
 `
 

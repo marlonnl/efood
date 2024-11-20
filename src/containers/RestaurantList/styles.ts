@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { breakpoints } from '../../styles'
 
 export const CardList = styled.div`
   display: grid;
@@ -6,4 +7,8 @@ export const CardList = styled.div`
   column-gap: 80px;
   row-gap: 48px;
   margin: 80px 0 120px;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    display: block;
+  }
 `

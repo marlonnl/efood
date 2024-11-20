@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { colors } from '../../styles/colors'
 import { ButtonContainer } from '../Button/styles'
+import { breakpoints } from '../../styles'
 
 export const Card = styled.div`
   background-color: ${colors.coral};
@@ -19,6 +20,10 @@ export const Card = styled.div`
 
   ${ButtonContainer} {
     width: 100%;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    margin-bottom: 48px;
   }
 `
 
@@ -71,6 +76,10 @@ export const ModalContent = styled.div`
   flex-direction: column;
   column-gap: 24px;
   color: ${colors.white};
+
+  @media (max-width: ${breakpoints.tablet}) {
+    max-width: 80%;
+  }
 
   h3 {
     font-size: 18px;

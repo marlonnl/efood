@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { colors } from '../../styles/colors'
+import { breakpoints } from '../../styles'
 
 export const HeaderStyle = styled.header`
   .vectorBg {

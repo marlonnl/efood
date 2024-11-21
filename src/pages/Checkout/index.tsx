@@ -220,7 +220,7 @@ const Checkout = () => {
                     </>
                   ) : (
                     <p className="emptyCart">
-                      Não há ítens no seu carrinho ainda :(
+                      Não há ítens no seu carrinho ainda.
                     </p>
                   )}
                 </Sidebar>

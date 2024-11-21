@@ -102,7 +102,7 @@ export const Sidebar = styled.aside`
   .emptyCart {
     font-size: 14px;
     line-height: 22px;
-    color: ${colors.coral};
+    color: ${colors.footerBg};
     text-align: center;
   }
 

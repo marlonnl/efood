@@ -18,7 +18,6 @@ import * as Yup from 'yup'
 
 import InputMask from 'react-input-mask'
 import { usePurchaseMutation } from '../../services/api'
-import { Navigate } from 'react-router-dom'
 import { priceFormat, sumCart } from '../../utils'
 
 const Checkout = () => {
@@ -152,10 +151,6 @@ const Checkout = () => {
       dispatch(clear())
     }
   }, [dispatch, isSuccess])
-
-  // if (items.length === 0 && !isSuccess) {
-  //   return <Navigate to="/" />
-  // }
 
   return (
     <>

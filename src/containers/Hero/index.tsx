@@ -4,7 +4,7 @@ import { Description, HeroContainer, LogoStyle } from './styles'
 const Hero = () => (
   <div className="vectorBg">
     <div className="container">
-      <HeroContainer>
+      <HeroContainer className="vectorBg">
         <LogoStyle>
           <Logo />
         </LogoStyle>

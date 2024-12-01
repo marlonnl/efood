@@ -9,6 +9,7 @@ export const FooterContainer = styled.footer`
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: ${colors.footerBg};
   }
 `
 
@@ -17,6 +18,7 @@ export const SocialList = styled.ul`
   display: flex;
   justify-content: center;
   column-gap: 8px;
+  background-color: ${colors.footerBg};
 `
 
 export const Disclaimer = styled.p`
@@ -25,4 +27,5 @@ export const Disclaimer = styled.p`
   width: 480px;
   margin: 0 auto;
   text-align: center;
+  background-color: ${colors.footerBg};
 `

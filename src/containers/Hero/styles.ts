@@ -7,11 +7,13 @@ export const HeroContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: transparent;
 `
 
 export const LogoStyle = styled.div`
   text-align: center;
   margin-top: 64px;
+  background-color: transparent;
 `
 
 export const Description = styled.p`
@@ -20,4 +22,5 @@ export const Description = styled.p`
   font-weight: bold;
   text-align: center;
   color: ${colors.coral};
+  background-color: transparent;
 `
